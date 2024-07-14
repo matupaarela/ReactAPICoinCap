@@ -1,25 +1,12 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
 import Cripto from "../components/Cripto"
+import useRequest from "../hooks/useRequest"
 
 const Criptos = ()  => {
 
-	const [criptos, setCriptos] = useState()
-	
-	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL
-		axios.get(`${API_URL}assets`)
-			.then((data) => {
-				setCriptos(data.data.data)
-				// console.log(data)
-			})
-			.catch(() => {
-				console.log('Error en la petición')
-			})
-	}, [])
+	const [criptos, loading] = useRequest('assets')
 
-	if (!criptos) return (
-		<span>Cargando</span>
+	if (!criptos || loading) return (
+		<span className="text-white">Cargando</span>
 	)
 
 	return (
