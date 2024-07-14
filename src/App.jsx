@@ -1,8 +1,14 @@
+import { Outlet } from 'react-router-dom'
+import Menu from './components/menu/Menu'
+
 function App() {
 
-  return (
-    <h1>Hola mundo</h1>
-  )
+	return (
+		<>
+			<Menu/>
+			<Outlet/>
+		</>
+	)
 }
 
 export default App
